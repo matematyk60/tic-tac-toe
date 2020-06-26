@@ -1,0 +1,243 @@
+openapi: "3.0.0"
+info:
+  version: "0.0"
+  title: tic-tac-toe
+paths:
+  /games:
+    get:
+      description: Fetch all created games
+      summary: fetch all games
+      responses:
+        200:
+          description: game list fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - games
+                properties:
+                  games:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Game'
+    post:
+      description: Create new game
+      summary: create new game
+      parameters:
+        - in: header
+          name: player-id
+          description: Player's id. Defaults to 1
+          schema:
+            type: integer
+      responses:
+        201:
+          description: Game created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - gameId
+                properties:
+                  gameId:
+                    type: integer
+
+  /games/{id}:
+    get:
+      description: Fetch single game
+      summary: fetch single game
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: Game's id
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Game found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        404:
+          description: Game not found
+  /games/{id}/players:
+    post:
+      description: Join game
+      summary: join game
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: Game's id
+          schema:
+            type: integer
+        - in: header
+          name: player-id
+          description: Player's id. Defaults to 1
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Player joined game
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - gameId
+                properties:
+                  gameId:
+                    type: integer
+        404:
+          description: Game not found
+          content:
+            application/json:
+              schema:
+                required:
+                  - error
+                properties:
+                  error:
+                    type: string
+                    enum:
+                      - NoSuchGame
+        422:
+          description: Error response
+          content:
+            application/json:
+              schema:
+                required:
+                  - error
+                properties:
+                  error:
+                    type: string
+                    enum:
+                      - GameIsFull
+  /games/{id}/moves:
+    post:
+      description: Make a move
+      summary: make a move
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - x
+                - y
+              properties:
+                x:
+                  type: integer
+                y:
+                  type: integer
+
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: Game's id
+          schema:
+            type: integer
+        - in: header
+          name: player-id
+          description: Player's id. Defaults to 1
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Move made successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - gameId
+                properties:
+                  gameId:
+                    type: integer
+        404:
+          description: Game not found
+          content:
+            application/json:
+              schema:
+                required:
+                  - error
+                properties:
+                  error:
+                    type: string
+                    enum:
+                      - NoSuchGame
+        422:
+          description: Error response
+          content:
+            application/json:
+              schema:
+                required:
+                  - error
+                properties:
+                  error:
+                    type: string
+                    enum:
+                      - SecondPlayerAbsent
+                      - UserNotGamePlayer
+                      - NotPlayersTurn
+                      - GameFinished
+                      - InvalidPosition
+                      - PositionTaken
+components:
+
+  schemas:
+    MarkType:
+      type: string
+      enum:
+        - Cross
+        - Nought
+    GameStatus:
+      type: string
+      enum:
+        - InProgress
+        - Finished
+        - Tied
+    Move:
+      properties:
+        gameId:
+          type: integer
+        sequenceNumber:
+          type: integer
+        playerId:
+          type: integer
+        mark:
+          type: object
+          properties:
+            x:
+              type: integer
+            y:
+              type: integer
+            markType:
+              $ref: '#/components/schemas/MarkType'
+    Game:
+      required:
+        - id
+        - startTime
+        - firstPlayerId
+        - status
+        - moves
+      properties:
+        id:
+          type: integer
+        startTime:
+          type: string
+        firstPlayerId:
+          type: integer
+        secondPlayerId:
+          type: integer
+        status:
+          $ref: '#/components/schemas/GameStatus'
+        moves:
+          type: array
+          items:
+            $ref: '#/components/schemas/Move'
+        winnerPlayerId:
+          type: integer

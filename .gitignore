@@ -1,0 +1,8 @@
+__pycache__
+venv/
+.idea/
+*.iml
+target/
+*.env
+tags
+.DS_Store
