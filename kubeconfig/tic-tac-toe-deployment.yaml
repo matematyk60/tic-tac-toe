@@ -4,6 +4,9 @@ metadata:
   name: tic-tac-toe-backend
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: tic-tac-toe-backend
   template:
     metadata:
       labels:
