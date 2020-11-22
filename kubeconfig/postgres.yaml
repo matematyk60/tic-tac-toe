@@ -24,7 +24,3 @@ spec:
             value: tic_tac_toe
           ports:
           - containerPort: 5432
-
-  curl -X GET "https://api.cloudflare.com/client/v4/user/tokens/verify" \
--H "Authorization: Bearer 3q79JoKUdLBdRqBJ7g_aFm6HvYUcTkYU3nugcm5K" \
-  -H "Content-Type:application/json"
