@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tic-tac-toe-backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tic-tac-toe-backend
+    spec:
+      containers:
+      - image: matematyk60/tic-tac-toe-backend:0.0
+        name: tic-tac-toe-backend
+        ports:
+        - containerPort: 8080
