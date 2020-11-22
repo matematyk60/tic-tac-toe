@@ -12,5 +12,4 @@ spec:
           - path: /21
             backend:
               serviceName: tic-tac-toe-backend
-                port:
-                  number: 80
+              servicePort: 80
