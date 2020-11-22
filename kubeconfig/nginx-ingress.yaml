@@ -8,7 +8,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /{{ Release.Namespace }}
+          - path: /21
             pathType: Prefix
             backend:
               service:
