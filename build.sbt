@@ -1,5 +1,5 @@
 name := "tic-tac-toe-backend"
-version := "0.0"
+version := "0.1"
 
 addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1")
 

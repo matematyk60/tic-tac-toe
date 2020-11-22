@@ -67,7 +67,7 @@ class Application(
       bl <- Blocker[IO]
       xa <- HikariTransactor.newHikariTransactor[IO](
         driverClassName = "org.postgresql.Driver",
-        url = "jdbc:postgresql://localhost:5432/tic_tac_toe",
+        url = "jdbc:postgresql://postgres:5432/tic_tac_toe",
         user = "username",
         pass = "password",
         connectEC = ec,
