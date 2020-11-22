@@ -1,17 +1,16 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: tic-tac-toe-ingress
   annotations:
+    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - http:
         paths:
           - path: /21
-            pathType: Prefix
             backend:
-              service:
-                name: tic-tac-toe-backend
+              serviceName: tic-tac-toe-backend
                 port:
                   number: 80
