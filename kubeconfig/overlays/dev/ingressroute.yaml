@@ -8,6 +8,6 @@ spec:
       match: Host(`tic-tac-toe.dev.codeheroes.tech`)
       services:
         - name: tic-tac-toe-backend
-          port: api
+          port: 80
   tls:
-    - secretName: cloudflare-tls
+    secretName: cloudflare-tls
