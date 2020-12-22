@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tic-tac-toe
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`tic-tac-toe.dev.codeheroes.tech`)
+      services:
+        - name: tic-tac-toe-backend
+          port: api
+  tls:
+    - secretName: cloudflare-tls
