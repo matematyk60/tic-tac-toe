@@ -1,0 +1,5 @@
+namespace: stage
+resources:
+  - namespace.yaml
+  - ../../base
+  - ingress.yaml
