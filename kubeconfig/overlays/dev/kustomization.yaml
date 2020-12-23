@@ -2,4 +2,11 @@ namespace: dev
 resources:
   - namespace.yaml
   - ../../base
-  - ingressroute.yaml
+patches:
+  - target:
+      kind: Ingress
+      name: tic-tac-toe
+    patch: |-
+      - op: replace
+        path: /spec/rules/-/host
+        value: tic-tac-toe.dev.codeheroes.tech

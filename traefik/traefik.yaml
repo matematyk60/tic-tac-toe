@@ -34,6 +34,7 @@ spec:
             - --ping=true
             - --providers.kubernetescrd
             - --providers.kubernetesingress
+            - --pilot.token=32835e7d-c20b-462c-9326-366cd323fd95
           image: traefik:2.3.6
           imagePullPolicy: IfNotPresent
           livenessProbe:
