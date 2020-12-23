@@ -3,11 +3,11 @@ resources:
   - namespace.yaml
   - ../../base
   - ingress.yaml
-#patches:
-#  - target:
-#      kind: Ingress
-#      name: tic-tac-toe
-#    patch: |-
-#      - op: replace
-#        path: /spec/rules/-/host
-#        value: tic-tac-toe.dev.codeheroes.tech
+
+images:
+- name: tic-tac-toe-backend
+  newName: matematyk60/tic-tac-toe-backend
+  newTag: "0.1"
+
+patchesStrategicMerge:
+- tic-tac-toe-cfm.yaml

@@ -1,6 +1,15 @@
 resources:
-  - postgres.yaml
-  - postgres-svc.yaml
-  - tic-tac-toe.yaml
-  - tic-tac-toe-svc.yaml
+  - persistence/postgres.yaml
+  - persistence/postgres-svc.yaml
+  - app/tic-tac-toe.yaml
+  - app/tic-tac-toe-svc.yaml
   - cloudflare-secret.yaml
+
+images:
+  - name: tic-tac-toe-backend
+    newTag: "0.1"
+
+configMapGenerator:
+  - name: tic-tac-toe
+    envs:
+      - app/tic-tac-toe.env

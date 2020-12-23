@@ -13,7 +13,10 @@ spec:
         app: tic-tac-toe-backend
     spec:
       containers:
-      - image: matematyk60/tic-tac-toe-backend:0.1
+      - image: tic-tac-toe-backend
         name: tic-tac-toe-backend
         ports:
         - containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: tic-tac-toe
