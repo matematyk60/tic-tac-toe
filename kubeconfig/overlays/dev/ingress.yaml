@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - host: tic-tac-toe.dev.codeheroes.tech
+    - host: tic-tac-toe.dev.zowie.dev
       http:
         paths:
           - path: /

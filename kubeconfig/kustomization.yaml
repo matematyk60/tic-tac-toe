@@ -1,6 +1,0 @@
-
-resources:
-  - postgres.yaml
-  - postgres-svc.yaml
-  - tic-tac-toe.yaml
-  - tic-tac-toe-svc.yaml
